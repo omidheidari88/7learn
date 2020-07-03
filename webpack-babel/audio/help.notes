@@ -5,3 +5,5 @@
 -react- export const test={}
 -node- module.exports={}
 -react- export default {}
+
+-->check kon bebin chera imort/export dorost kar nemikone
