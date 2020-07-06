@@ -1,3 +1,4 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-ReactDom.render(<h1>Hello from React</h1>, document.querySelector('#app'));
+import App from './Componnent/app';
+ReactDom.render(<App />, document.querySelector('#app'));
