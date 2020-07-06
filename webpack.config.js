@@ -44,6 +44,7 @@ module.exports = {
 		new htmlWebpackPlugin({
 			title: 'Webpack App',
 			filename: path.join(__dirname, 'public/index.html'),
+			template: path.join(__dirname, 'app/index.html'),
 		}),
 	],
 	devtool: 'source-map',
