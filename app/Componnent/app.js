@@ -1,10 +1,13 @@
 import React from 'react';
-import Form from './Form';
+import Utton from './Button';
 const App = () => {
+	const saveHanndler = (x) => {
+		return alert(x);
+	};
 	return (
 		<div>
 			<h1>App</h1>
-			<Form />
+			<Utton title="Save" saveData={saveHanndler} />
 		</div>
 	);
 };
