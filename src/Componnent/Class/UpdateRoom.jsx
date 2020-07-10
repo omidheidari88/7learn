@@ -1,26 +1,25 @@
-import React from 'react';
-import Rooms from './Rooms';
+import React, {Component} from 'react';
 
-class UpdateRoom extends Rooms {
-	// eslint-disable-next-line no-useless-constructor
-	constructor(props) {
-		super(props);
-	}
+class UpdateRoom extends Component {
 	render() {
+		const {saveData, children} = this.props;
+		const doTheMagic = (e) => {
+			saveData({
+				num: document.querySelector('#num').value,
+				title: document.querySelector('#title').value,
+			});
+		};
 		return (
 			<div>
-				<label htmlFor="num">Room Number</label>
+				<label htmlFor="num">Number</label>
 				<input type="text" id="num" />
-				<label htmlFor="title">Room Title</label>
+				<label htmlFor="title">Title</label>
 				<input type="text" id="title" />
 				<button
-					onClick={() => {
-						this.props.saveData({
-							num: document.querySelector('#num').value,
-							title: document.querySelector('#title').value,
-						});
+					onClick={(e) => {
+						doTheMagic(e);
 					}}>
-					update
+					{children}
 				</button>
 			</div>
 		);
