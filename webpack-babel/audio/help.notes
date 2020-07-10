@@ -1,9 +1,0 @@
-* tafavot import/export dar node/front *
--node- const sample = require('./samle.js');
--react- import sample from './samle.js'
--node- exports.test={}
--react- export const test={}
--node- module.exports={}
--react- export default {}
-
--->check kon bebin chera imort/export dorost kar nemikone
