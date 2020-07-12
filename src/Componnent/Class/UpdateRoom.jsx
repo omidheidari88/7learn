@@ -2,19 +2,23 @@ import React, {Component} from 'react';
 
 class UpdateRoom extends Component {
 	render() {
-		const {saveData, children} = this.props;
+		const {updateData, children} = this.props;
 		const doTheMagic = (e) => {
-			saveData({
-				num: document.querySelector('#num').value,
-				title: document.querySelector('#title').value,
+			const id = document.querySelector('#id').value;
+			document.querySelector('#id').value = '';
+			const name = document.querySelector('#name').value;
+			document.querySelector('#name').value = '';
+			updateData({
+				id,
+				name,
 			});
 		};
 		return (
 			<div>
-				<label htmlFor="num">Number</label>
-				<input type="text" id="num" />
-				<label htmlFor="title">Title</label>
-				<input type="text" id="title" />
+				<label htmlFor="id">Room ID</label>
+				<input type="text" id="id" />
+				<label htmlFor="name">name</label>
+				<input type="text" id="name" />
 				<button
 					onClick={(e) => {
 						doTheMagic(e);
