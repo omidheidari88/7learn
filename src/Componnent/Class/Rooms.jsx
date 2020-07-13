@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import NewRoom from '../Class/UpdateRoom';
-import User from './Room';
+import UpdateRoom from '../Class/UpdateRoom';
+import Room from './Room';
+import Loader from './Loader';
 export class Rooms extends Component {
 	constructor() {
 		super();
@@ -48,15 +49,16 @@ export class Rooms extends Component {
 			};
 		});
 	};
-
+	componentDidMount() {
+		console.log(this.state.rooms);
+	}
 	render() {
-		const renderRooms = this.state.rooms.map((room) => <User room={room} deleteHandler={this.deleteHandler} editHandler={this.editHandler} save={this.saveHandler} />);
+		const renderRooms = this.state.rooms.map((room) => <Room room={room} deleteHandler={this.deleteHandler} editHandler={this.editHandler} save={this.saveHandler} />);
 		return (
 			<div>
+				{/* <Loader /> */}
 				<h1>Rooms</h1>
-				<NewRoom updateData={this.updateHandler}>add room</NewRoom>
-				<br />
-
+				<UpdateRoom updateData={this.updateHandler}>add room</UpdateRoom>
 				{renderRooms}
 			</div>
 		);
