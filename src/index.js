@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Rooms from './Componnent/Class/Rooms';
+import App from './Componnent/App';
 
-ReactDOM.render(<Rooms />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
