@@ -1,18 +1,15 @@
 import React from 'react';
-
+import {getCategories} from '../../Utility/Category';
 const Add = ({tasksItem}) => {
-	const categories = {
-		finance: 'مالی',
-		management: 'مدیریت',
-		accountant: 'حسابداری',
-	};
+	const categories = getCategories();
 	const saveHandler = (e) => {
 		e.preventDefault();
 		const form = document.querySelector('#form');
 		const formsItem = {
 			title: form.task_title.value,
 			category: form.task_category.value,
-			assignee: form.task_assignee.value,
+			price: form.task_price.value,
+			phone: form.task_mobile.value,
 			status: form.task_status.value,
 		};
 		return tasksItem(formsItem);
@@ -33,13 +30,17 @@ const Add = ({tasksItem}) => {
 									<label htmlFor="task_category">دسته بندی</label>
 									<select className="form-control" name="task_category" id="task_category">
 										{Object.keys(categories).map((key) => (
-											<option value={key}>{categories[key]}</option>
+											<option value={key}>{key}</option>
 										))}
 									</select>
 								</div>
 								<div className="form-group">
-									<label htmlFor="task_assignee">انجام دهنده</label>
-									<input type="text" className="form-control" name="task_assignee" id="task_assignee" placeholder="انجام دهنده وظیفه" />
+									<label htmlFor="task_price">قیمت</label>
+									<input type="text" className="form-control" name="task_price" id="task_price" placeholder="مثال : 45000" />
+								</div>
+								<div className="form-group">
+									<label htmlFor="task_mobile">موبایل</label>
+									<input type="text" className="form-control" name="task_mobile" id="task_mobile" placeholder="مثال : 09121231234" />
 								</div>
 								<div className="form-group">
 									هزینه

@@ -10,7 +10,7 @@ export class App extends Component {
 		// this.componentHandler = this.componentHandler.bind(this);
 		this.state = {
 			items: [],
-			currenComponent: <Courses />,
+			currenComponent: <Tasks tasks={[]} />,
 		};
 	}
 	addItem = (item) => {

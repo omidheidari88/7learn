@@ -15,12 +15,12 @@ function Header({render}) {
 						<span>
 							{' '}
 							شما هنوز در سایت
-							<a href="/auth/register" className="btn btn-outline-secondary  btn-icon">
+							<a href="/auth/register" className="btn btn-outline-secondary  btn-icon m-r-5">
 								<i className="material-icons">how_to_reg</i>
 								<span>ثبت نام</span>
 							</a>{' '}
 							یا{' '}
-							<a href="/auth/login" className="btn btn-outline-info  btn-icon">
+							<a href="/auth/login" className="btn btn-outline-info  btn-icon ">
 								<i className="material-icons">lock_open</i>
 								<span>ورود</span>
 							</a>{' '}
@@ -29,15 +29,15 @@ function Header({render}) {
 					</div>
 					<div className="card-body">
 						<div className="actions">
-							<button onClick={(e) => render('add')} className="btn btn-outline-success btn-icon ml4">
+							<button onClick={(e) => render('add')} className="btn btn-outline-success btn-icon m-l-5">
 								<i className="material-icons">note_add</i>
 								افزودن
 							</button>
-							<button onClick={(e) => render('list')} className="btn btn-outline-primary btn-icon mt2">
+							<button onClick={(e) => render('list')} className="btn btn-outline-primary btn-icon m-l-5 ">
 								<i className="material-icons">list</i>
 								وظایف
 							</button>
-							<button onClick={(e) => render('course')} className="btn btn-outline-secondary btn-icon">
+							<button onClick={(e) => render('course')} className="btn btn-outline-secondary btn-icon m-l-5">
 								<i className="material-icons">school</i>
 								دوره ها
 							</button>
