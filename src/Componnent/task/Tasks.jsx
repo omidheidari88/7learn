@@ -9,7 +9,7 @@ class Tasks extends Component {
 	}
 	check = (tasks) => {
 		if (tasks.length > 0) {
-			tasks.map((task) => <Item {...task} />);
+			return tasks.map((task) => <Item {...task} />);
 		}
 		return <NoItem />;
 	};

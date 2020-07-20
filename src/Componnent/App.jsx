@@ -9,13 +9,22 @@ export class App extends Component {
 		// bind in ES2015
 		// this.componentHandler = this.componentHandler.bind(this);
 		this.state = {
-			currenComponent: <Tasks tasks={[]} />,
+			items: [],
+			currenComponent: <Courses />,
 		};
 	}
+	addItem = (item) => {
+		this.setState((prev) => {
+			return {
+				...prev,
+				items: [...prev.items, item],
+			};
+		});
+	};
 	componentHandler = (type) => {
 		const components = {
-			add: <Add />,
-			list: <Tasks tasks={[]} />,
+			add: <Add tasksItem={this.addItem} />,
+			list: <Tasks tasks={this.state.items} />,
 			course: <Courses />,
 		};
 		if (type in components) {

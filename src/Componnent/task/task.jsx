@@ -1,18 +1,14 @@
 import React from 'react';
 
-const Item = ({task}) => {
-	const {task_title, task_category, task_assignee, task_status} = task;
+const Item = ({title, category, assignee, status}) => {
 	return (
 		<tr>
-			<td>{task_title}</td>
-			<td>{task_category}</td>
-			<td>{task_assignee}</td>
+			<td>{title}</td>
+			<td>{category}</td>
+			<td>{assignee}</td>
 
 			<td>
-				<span className={`badge badge-${task_status === 0 ? 'primary' : ''}`}>ایجاد شده</span>
-				<span className={`badge badge-${task_status === 1 ? 'secondary' : ''}`}>در حال انجام</span>
-				<span className={`badge badge-${task_status === 2 ? 'warning' : ''}`}>انجام شده</span>
-				<span className={`badge badge-${task_status === 3 ? 'danger' : ''}`}>لغو شده</span>
+				<span className={`badge badge-${status > 1 ? 'success' : 'danger'}`}>{status > 1 ? 'درآمد' : 'هزینه'}</span>
 			</td>
 			<td>
 				<a href="/#">
