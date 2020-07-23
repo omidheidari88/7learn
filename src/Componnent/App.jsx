@@ -15,8 +15,15 @@ export class App extends Component {
 		};
 		this.axios = new Axios();
 	}
-	addItem = (items) => {
-		this.axios.post('http://localhost:7400/', items);
+	addItem = (item) => {
+		this.axios
+			.post('http://localhost:3200/users', item)
+			.then((res) => {
+				console.log(res.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 		// this.setState((prev) => {
 		// 	return {
 		// 		...prev,
@@ -34,10 +41,10 @@ export class App extends Component {
 			this.setState({currenComponent: components[type]});
 		}
 	};
-	async componentDidMount() {
-		const response = await this.axios.get('https://jsonplaceholder.ir/posts');
-		this.addItem(response.data);
-	}
+	// async componentDidMount() {
+	// 	const response = await this.axios.get('https://jsonplaceholder.ir/posts');
+	// 	this.addItem(response.data);
+	// }
 	// componentDidMount() {
 	// 	this.axios.get('/info.json').then((res) => {
 	// 		console.log(res);
