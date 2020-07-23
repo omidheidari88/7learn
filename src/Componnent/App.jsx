@@ -41,10 +41,17 @@ export class App extends Component {
 			this.setState({currenComponent: components[type]});
 		}
 	};
-	// async componentDidMount() {
-	// 	const response = await this.axios.get('https://jsonplaceholder.ir/posts');
-	// 	this.addItem(response.data);
-	// }
+	async componentDidMount() {
+		const response = await this.axios.get('https://jsonplaceholder.ir/users');
+		response.data.map((item) => {
+			this.setState((prev) => {
+				return {
+					...prev,
+					items: [...prev.items, item],
+				};
+			});
+		});
+	}
 	// componentDidMount() {
 	// 	this.axios.get('/info.json').then((res) => {
 	// 		console.log(res);
