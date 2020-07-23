@@ -12,8 +12,10 @@ const Add = ({tasksItem}) => {
 			phone: form.task_mobile.value,
 			status: form.task_status.value,
 		};
+
 		return tasksItem(formsItem);
 	};
+
 	return (
 		<div>
 			<div className="row">
