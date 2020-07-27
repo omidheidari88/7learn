@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import Header from './header/Header';
 import Tasks from './task/Tasks';
 import Courses from './course/Courses';
-import Add from './add/Add';
+import AddCourse from './add/AddCourse';
+import AddList from './add/AddList';
 import Axios from '../Http/Axios';
 import Loader from './loader/Loader';
+
 export class App extends React.PureComponent {
 	constructor() {
 		super();
@@ -14,6 +16,7 @@ export class App extends React.PureComponent {
 			items: [],
 			is_loading: false,
 			type: 'list',
+			filter: '',
 		};
 		this.axios = new Axios();
 	}
@@ -26,7 +29,7 @@ export class App extends React.PureComponent {
 			};
 		});
 		this.axios
-			.post('http://localhost:3200/users', item)
+			.post('http://localhost:5000/tasks/add', item)
 			.then((res) => {
 				this.setState((prev) => {
 					return {
@@ -73,8 +76,9 @@ export class App extends React.PureComponent {
 	// }
 	componentDidMount() {
 		this.axios
-			.get('http://localhost:3200/users')
+			.get('http://localhost:5000/tasks/add')
 			.then((res) => {
+				console.log(res.data.items);
 				this.setState({
 					items: res.data.items,
 				});
@@ -84,13 +88,28 @@ export class App extends React.PureComponent {
 
 	render() {
 		const loading = this.state.is_loading ? <Loader /> : null;
-		const components = this.state.type === 'add' ? <Add tasksItem={this.addItem} /> : <Tasks tasks={this.state.items} />;
+		// const components = this.state.type === 'add' ? <Add tasksItem={this.addItem} /> : <Tasks tasks={this.state.items} />;
+		const components = () => {
+			switch (this.state.type) {
+				case 'addCourse':
+					return <AddCourse />;
+				case 'addList':
+					return <AddList tasksItem={this.addItem} />;
+				case 'list':
+					return <Tasks tasks={this.state.items} render={this.componentHandler} />;
+				case 'course':
+					return <Courses render={this.componentHandler} />;
+				default:
+					break;
+			}
+		};
+
 		return (
 			<div id="wrapper" className="rtl">
 				<div id="container">
 					<Header render={this.componentHandler} />
 					{loading}
-					{components}
+					{components()}
 				</div>
 			</div>
 		);

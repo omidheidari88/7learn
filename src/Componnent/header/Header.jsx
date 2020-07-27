@@ -9,7 +9,7 @@ function Header({render}) {
 						{/* if( typeof user!='undefined' ||check){  */}
 						<a href="/admin" className="btn btn-warning  pull-left   btn-icon">
 							<i className="material-icons">admin_panel_settings</i>
-							<span>You logged in as an admin</span>
+							<span>پنل ادمین</span>
 						</a>
 
 						<span>
@@ -29,10 +29,6 @@ function Header({render}) {
 					</div>
 					<div className="card-body">
 						<div className="actions">
-							<button onClick={(e) => render('add')} className="btn btn-outline-success btn-icon m-l-5">
-								<i className="material-icons">note_add</i>
-								افزودن
-							</button>
 							<button onClick={(e) => render('list')} className="btn btn-outline-primary btn-icon m-l-5 ">
 								<i className="material-icons">list</i>
 								وظایف

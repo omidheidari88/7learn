@@ -35,12 +35,21 @@ class Tasks extends Component {
 	};
 
 	render() {
-		const {tasks} = this.props;
+		const {tasks, render} = this.props;
 		const renderTask = this.check(tasks);
 		return (
 			<div className="row">
 				<div className="col">
 					<div className="card">
+						<div className="card-body">
+							<div className="actions">
+								<button onClick={(e) => render('addList')} className="btn btn-outline-success btn-icon m-l-5">
+									<i className="material-icons">note_add</i>
+									افزودن وظیفه
+								</button>
+							</div>
+						</div>
+
 						<div className="card-header">لیست وظایف</div>
 						<div className="card-body">
 							<table className="table table-bordered table-hover table-striped">
