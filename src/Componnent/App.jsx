@@ -4,6 +4,7 @@ import Tasks from './task/Tasks';
 import Courses from './course/Courses';
 import Add from './add/Add';
 import Axios from '../Http/Axios';
+import Loader from './loader/Loader';
 export class App extends Component {
 	constructor() {
 		super();
@@ -11,11 +12,19 @@ export class App extends Component {
 		// this.componentHandler = this.componentHandler.bind(this);
 		this.state = {
 			items: [],
-			currenComponent: <Tasks tasks={[]} />,
+			is_loading: false,
+			type: 'list',
 		};
 		this.axios = new Axios();
 	}
+
 	addItem = (item) => {
+		this.setState((prev) => {
+			return {
+				...prev,
+				is_loading: true,
+			};
+		});
 		this.axios
 			.post('http://localhost:3200/users', item)
 			.then((res) => {
@@ -23,6 +32,14 @@ export class App extends Component {
 			})
 			.catch((err) => {
 				console.log(err);
+			})
+			.finally(() => {
+				this.setState((prev) => {
+					return {
+						...prev,
+						is_loading: false,
+					};
+				});
 			});
 		// this.setState((prev) => {
 		// 	return {
@@ -31,26 +48,32 @@ export class App extends Component {
 		// 	};
 		// });
 	};
+
 	componentHandler = (type) => {
-		const components = {
-			add: <Add tasksItem={this.addItem} />,
-			list: <Tasks tasks={this.state.items} />,
-			course: <Courses />,
-		};
-		if (type in components) {
-			this.setState({currenComponent: components[type]});
-		}
+		// const components = {
+		// 	add: <Add tasksItem={this.addItem} />,
+		// 	list: <Tasks tasks={this.state.items} />,
+		// 	course: <Courses />,
+		// };
+		// if (type in components) {
+		// this.setState({currenComponent: components[type]});
+		// }
+		this.setState({type});
 	};
 	async componentDidMount() {
-		const response = await this.axios.get('https://jsonplaceholder.ir/users');
-		response.data.map((item) => {
-			this.setState((prev) => {
-				return {
-					...prev,
-					items: [...prev.items, item],
-				};
-			});
-		});
+		await this.axios
+			.get('http://localhost:3200/users')
+			.then((res) => {
+				res.data.map((item) => {
+					this.setState((prev) => {
+						return {
+							...prev,
+							items: [...prev.items, item],
+						};
+					});
+				});
+			})
+			.catch((err) => console.log(err));
 	}
 	// componentDidMount() {
 	// 	this.axios.get('/info.json').then((res) => {
@@ -58,11 +81,15 @@ export class App extends Component {
 	// 	});
 	// }
 	render() {
+		const loading = this.state.is_loading ? <Loader /> : null;
+		const components = this.state.type === 'add' ? <Add tasksItem={this.addItem} /> : <Tasks tasks={this.state.items} />;
+
 		return (
 			<div id="wrapper" className="rtl">
 				<div id="container">
 					<Header render={this.componentHandler} />
-					{this.state.currenComponent}
+					{loading}
+					{components}
 				</div>
 			</div>
 		);

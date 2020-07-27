@@ -1,12 +1,14 @@
 import React from 'react';
 import {getCategories} from '../../Utility/Category';
+import moment from 'jalali-moment';
 const Add = ({tasksItem}) => {
 	const categories = getCategories();
 	const saveHandler = (e) => {
 		e.preventDefault();
 		const form = document.querySelector('#form');
 		const formsItem = {
-			title: form.task_title.value,
+			// date: moment.from(form.task_title.value, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD'), //tabdile shamsi be miladi
+			date: moment(form.task_title.value, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'), //tabdile miladi be shamsi
 			category: form.task_category.value,
 			price: form.task_price.value,
 			phone: form.task_mobile.value,
@@ -25,8 +27,8 @@ const Add = ({tasksItem}) => {
 						<div className="card-body">
 							<form id="form">
 								<div className="form-group">
-									<label htmlFor="task_title">عنوان</label>
-									<input type="text" className="form-control" name="task_title" id="task_title" placeholder="عنوان وظیفه" />
+									<label htmlFor="task_title">تاریخ</label>
+									<input type="date" className="form-control" name="task_title" id="task_title" placeholder="عنوان وظیفه" />
 								</div>
 								<div className="form-group">
 									<label htmlFor="task_category">دسته بندی</label>

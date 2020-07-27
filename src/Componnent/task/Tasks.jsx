@@ -12,19 +12,16 @@ class Tasks extends Component {
 		};
 	}
 	check = (tasks) => {
-		// if (tasks.length > 0) {
-		// 	return tasks
-		// 		.filter((task) => {
-		// 			if (this.state.filter === 'all') return true;
-		// 			else {
-		// 				const filterType = this.state.filter === 'income' ? '2' : '1';
-		// 				return task.status === filterType;
-		// 			}
-		// 		})
-		// 		.map((task) => <Item {...task} />);
-		// }
 		if (tasks.length > 0) {
-			return tasks.map((task) => <Item {...task} />);
+			return tasks
+				.filter((task) => {
+					if (this.state.filter === 'all') return true;
+					else {
+						const filterType = this.state.filter === 'income' ? 2 : 1;
+						return task.status === filterType;
+					}
+				})
+				.map((task) => <Item {...task} />);
 		}
 		return <NoItem />;
 	};

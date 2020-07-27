@@ -2,17 +2,11 @@ import React from 'react';
 import Toman from '../../Partials/Currency/Toman';
 import Phone from '../../Partials/Phone';
 import {getCategoryByKey} from '../../Utility/Category';
-const Item = ({title, id, url, avatar, email, name, address}) => {
+
+const Item = ({date, category, price, phone, status}) => {
 	return (
 		<tr>
-			<td>{name}</td>
-			<td>{email}</td>
-			<td>{address.city}</td>
-			<td>{address.number}</td>
-			<td>
-				<img src={avatar} alt="#x" />
-			</td>
-			{/* <td>{title}</td>
+			<td>{date}</td>
 			<td>{getCategoryByKey(category)}</td>
 			<td>
 				<Toman amount={price} />
@@ -20,10 +14,9 @@ const Item = ({title, id, url, avatar, email, name, address}) => {
 			<td>
 				<Phone number={phone} />
 			</td>
-
 			<td>
 				<span className={`badge badge-${status > 1 ? 'success' : 'danger'}`}>{status > 1 ? 'درآمد' : 'هزینه'}</span>
-			</td> */}
+			</td>
 			<td>
 				<a href="/#">
 					<i className="material-icons">edit</i>
