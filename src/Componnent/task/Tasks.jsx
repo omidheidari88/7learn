@@ -33,6 +33,7 @@ class Tasks extends Component {
 			};
 		});
 	};
+
 	render() {
 		const {tasks} = this.props;
 		const renderTask = this.check(tasks);
@@ -46,7 +47,7 @@ class Tasks extends Component {
 								<thead>
 									<Filter filtering={this.filterHandler} />
 									<tr>
-										<th>عنوان</th>
+										<th>تاریخ</th>
 										<th>دسته بندی</th>
 										<th>قیمت</th>
 										<th>موبایل</th>

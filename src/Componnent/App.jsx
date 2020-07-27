@@ -5,7 +5,7 @@ import Courses from './course/Courses';
 import Add from './add/Add';
 import Axios from '../Http/Axios';
 import Loader from './loader/Loader';
-export class App extends Component {
+export class App extends React.PureComponent {
 	constructor() {
 		super();
 		// bind in ES2015
@@ -28,7 +28,12 @@ export class App extends Component {
 		this.axios
 			.post('http://localhost:3200/users', item)
 			.then((res) => {
-				console.log(res.data);
+				this.setState((prev) => {
+					return {
+						...prev,
+						items: [...prev.items, res.data.item],
+					};
+				});
 			})
 			.catch((err) => {
 				console.log(err);
@@ -60,30 +65,26 @@ export class App extends Component {
 		// }
 		this.setState({type});
 	};
-	async componentDidMount() {
-		await this.axios
+	//dar vc tozih dadam
+	// componentDidUpdate(prevProps, prevState) {
+	// 	if (prevState.items.length < this.state.items.length) {
+	// 		console.log('is less');
+	// 	}
+	// }
+	componentDidMount() {
+		this.axios
 			.get('http://localhost:3200/users')
 			.then((res) => {
-				res.data.map((item) => {
-					this.setState((prev) => {
-						return {
-							...prev,
-							items: [...prev.items, item],
-						};
-					});
+				this.setState({
+					items: res.data.items,
 				});
 			})
 			.catch((err) => console.log(err));
 	}
-	// componentDidMount() {
-	// 	this.axios.get('/info.json').then((res) => {
-	// 		console.log(res);
-	// 	});
-	// }
+
 	render() {
 		const loading = this.state.is_loading ? <Loader /> : null;
 		const components = this.state.type === 'add' ? <Add tasksItem={this.addItem} /> : <Tasks tasks={this.state.items} />;
-
 		return (
 			<div id="wrapper" className="rtl">
 				<div id="container">
